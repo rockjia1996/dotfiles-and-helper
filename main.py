@@ -8,10 +8,11 @@ from Menu import Menu
 
 
 def main(stdscr):
+   
+    content_win = curses.newwin(20, 20, 0, 0)
+    content_win.keypad(True)
     menu = Menu(10, 10)
-
-
-    menu.render(curses.newwin(10, 10, 0, 0))
+    menu.render(content_win)
 
 
     
