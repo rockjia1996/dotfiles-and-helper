@@ -1,0 +1,18 @@
+<svg
+	viewBox="0 0 8 24"
+	xmlns="http://www.w3.org/2000/svg"
+	background="transparent"
+>
+	<polyline
+		fill="#428c00"
+		points="0,12 8,0 8,24"
+		stroke="#428c00"
+	/>
+
+	<polyline
+		fill="#46d93c"
+		points="0,12 0,0 8,0 0,12 8,24 0,24 0,12"
+		stroke="#46d93c"
+
+	/>
+</svg>
