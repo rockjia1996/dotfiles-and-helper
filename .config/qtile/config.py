@@ -46,7 +46,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     #Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "r", lazy.spawn("rofi -show drun -show-icons"), desc="Spawn a command using a prompt widget"),
-
+    Key([], "Print", lazy.spawn(" import -window root screenshot.jpg")),
     Key([], "F1", lazy.spawn("amixer sset Master toggle")),
     Key([], "F2", lazy.spawn("amixer sset Master 3%-")),
     Key([], "F3", lazy.spawn("amixer sset Master 3%+")),
@@ -73,13 +73,13 @@ group_names = [
 groups = [Group(i) for i in group_names]
 
 layouts = [
+    layout.Max(margin=[20, 20, 20, 20]),
     layout.Columns(
 	border_focus_stack=["#d75f5f", "#8f3d3d"], 
 	border_focus=["#a8eb12", "#2cd261", "#b7f92c"],
 	border_width=4,
 	margin=[20, 20, 20, 20]
 	),
-    layout.Max(margin=[20, 20, 20, 20]),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -96,8 +96,8 @@ layouts = [
 # If resolution is 3840 x 2160 
 fontsize = 22
 padding = 8
-top_bar_height = 46
-bottom_bar_height = 48
+top_bar_height = 40
+bottom_bar_height = 42
 
 # If resolution is 1920 * 1080
 # fontsize = 16
@@ -114,40 +114,34 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
-            [
+        top=bar.Bar([
                 widget.Sep(
 			    background="#000000", linewidth=0, padding=10),
                 widget.GroupBox(highlight_method="block"),
                 widget.WindowName(format='{name}',padding=10),
                 widget.Systray(),
 
+		        #Memeory
+		        widget.Image(filename="~/.config/qtile/icons/powerline-head-light.svg"),
+		        widget.Image(filename="~/.config/qtile/icons/ram.svg",background="#46d93c",margin=4),
+		        widget.Memory(format='{MemUsed:.0f}{mm}',background="#46d93c",foreground="#fafafa",padding=10),
 
+		        # Time
+		        widget.Image(filename="~/.config/qtile/icons/powerline-dark.svg"),
+		        widget.Image(filename="~/.config/qtile/icons/time.svg",background="#428c00",margin=6),
+                widget.Clock(format="%b %d %H:%M", background="#428c00", foreground="#fafafa",padding=5),
 
-		#Memeory
-		widget.Image(filename="~/.config/qtile/icons/powerline-head-light.svg"),
-		widget.Image(filename="~/.config/qtile/icons/ram.svg",background="#46d93c",margin=4),
-		widget.Memory(format='{MemUsed:.0f}{mm}',background="#46d93c",foreground="#fafafa",padding=10),
+		        # Volume
+		        widget.Image(filename="~/.config/qtile/icons/powerline-light.svg"),
+		        widget.Image(filename="~/.config/qtile/icons/volume.svg",background="#46d93c", foreground="#fafafa",margin=5),
+		        widget.Volume(background="#46d93c", padding=5),
 
-		# Time
-		widget.Image(filename="~/.config/qtile/icons/powerline-dark.svg"),
-		widget.Image(filename="~/.config/qtile/icons/time.svg",background="#428c00",margin=6),
-        widget.Clock(format="%b %d %H:%M", background="#428c00", foreground="#fafafa",padding=5),
-
-		# Volume
-		widget.Image(filename="~/.config/qtile/icons/powerline-light.svg"),
-		widget.Image(filename="~/.config/qtile/icons/volume.svg",background="#46d93c", foreground="#fafafa",margin=5),
-		widget.Volume(background="#46d93c", padding=5),
-
-		# Logout
-		widget.Image(filename="~/.config/qtile/icons/powerline-dark.svg"),
-		widget.Image(filename="~/.config/qtile/icons/logout.svg",background="#428c00",margin=4),
-        widget.QuickExit( default_text="Logout",countdown_format='In {} s',background="#428c00", foreground="#fafafa", padding=10),
-        ],
-        top_bar_height,
-        ),
-	bottom=bar.Bar(
-	[
+		        # Logout
+		        widget.Image(filename="~/.config/qtile/icons/powerline-dark.svg"),
+        		widget.Image(filename="~/.config/qtile/icons/logout.svg",background="#428c00",margin=4),
+                widget.QuickExit( default_text="Logout",countdown_format='In {} s',background="#428c00", foreground="#fafafa", padding=10)],
+                top_bar_height),
+	    bottom=bar.Bar([
 		widget.Image(
 			filename="~/.config/qtile/icons/layout.svg",
 			background="#75bb00",
