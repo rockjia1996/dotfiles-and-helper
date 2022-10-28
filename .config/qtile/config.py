@@ -62,7 +62,7 @@ group_names = [
     "WWW-1",
     "DEV-2",
     "TERM-3",
-    "SYS-4",
+    "WKSP-4",
     "WKSP-5",
     "WKSP-6",
     "WKSP-7",
@@ -73,12 +73,12 @@ group_names = [
 groups = [Group(i) for i in group_names]
 
 layouts = [
-    layout.Max(margin=[20, 20, 20, 20]),
+    layout.Max(margin=[40, 40, 40, 40]),
     layout.Columns(
 	border_focus_stack=["#d75f5f", "#8f3d3d"], 
 	border_focus=["#a8eb12", "#2cd261", "#b7f92c"],
-	border_width=4,
-	margin=[20, 20, 20, 20]
+	border_width=6,
+	margin=[25, 25, 25, 25]
 	),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -121,9 +121,14 @@ screens = [
                 widget.WindowName(format='{name}',padding=10),
                 widget.Systray(),
 
-		        #Memeory
-		        widget.Image(filename="~/.config/qtile/icons/powerline-head-light.svg"),
-		        widget.Image(filename="~/.config/qtile/icons/ram.svg",background="#46d93c",margin=4),
+                # CPU
+		        widget.Image(filename="~/.config/qtile/icons/powerline-head-dark.svg"),
+		        widget.Image(filename="~/.config/qtile/icons/cpu.svg",background="#428c00",margin=2),
+		        widget.CPU(format='{freq_current}GHz {load_percent}%', background="#428c00",foreground="#fafafa",padding=10),
+
+		        # Memory
+		        widget.Image(filename="~/.config/qtile/icons/powerline-light.svg"),
+		        widget.Image(filename="~/.config/qtile/icons/memory.svg",background="#46d93c",margin=8),
 		        widget.Memory(format='{MemUsed:.0f}{mm}',background="#46d93c",foreground="#fafafa",padding=10),
 
 		        # Time
@@ -161,7 +166,7 @@ screens = [
 
 	],
     bottom_bar_height),
-	wallpaper="~/.config/qtile/background.svg",
+	wallpaper="~/.config/qtile/background-moon-4k.jpg",
 	wallpaper_mode="fill"
     ),
 ]
